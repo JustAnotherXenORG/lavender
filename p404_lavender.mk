@@ -13,22 +13,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#
-# This file sets variables that control the way modules are built
-# thorughout the system. It should not be used to conditionally
-# disable makefiles (the proper mechanism to control what gets
-# included in a build is to use PRODUCT_PACKAGES in a product
-# definition file).
-#
-
 # Inherit device configuration
 $(call inherit-product, device/xiaomi/lavender/device.mk)
 
-# Inherit some common Arrow stuff
-$(call inherit-product, vendor/arrow/config/common.mk)
+# Inherit some common 404 stuff
+$(call inherit-product, vendor/404/configs/common.mk)
 
 # Device identifier
-PRODUCT_NAME := arrow_lavender
+PRODUCT_NAME := p404_lavender
 PRODUCT_MANUFACTURER := Xiaomi
 PRODUCT_PLATFORM := SDM660
 PRODUCT_DEVICE := lavender
@@ -36,3 +28,10 @@ PRODUCT_BRAND := Xiaomi
 PRODUCT_MODEL := Redmi Note 7
 
 TARGET_VENDOR_PRODUCT_NAME := lavender
+
+# Build type
+ifeq ($(WITH_GAPPS),true)
+P404_BUILDTYPE := tokui-GAPPS
+else
+P404_BUILDTYPE := tokui-VANILLA
+endif
