@@ -30,7 +30,7 @@ PRODUCT_MODEL := Redmi Note 7
 TARGET_VENDOR_PRODUCT_NAME := lavender
 
 # Build type
-VERSION_BRAND := SHINKA
+VERSION_BRAND := tokui
 
 ifeq ($(WITH_GAPPS),true)
 ZIP := GAPPS
