@@ -12,27 +12,26 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 #
-# This file sets variables that control the way modules are built
-# thorughout the system. It should not be used to conditionally
-# disable makefiles (the proper mechanism to control what gets
-# included in a build is to use PRODUCT_PACKAGES in a product
-# definition file).
-#
+# Check for target product
+ifeq (flamingo_lavender,$(TARGET_PRODUCT))
 
-# Inherit device configuration
-$(call inherit-product, device/xiaomi/lavender/device.mk)
+# Inherit FlamingoOS configuration
+$(call inherit-product, vendor/flamingo/target/product/flamingo.mk)
 
-# Inherit some common Arrow stuff
-$(call inherit-product, vendor/arrow/config/common.mk)
+# Inherit from lavender device
+$(call inherit-product, $(LOCAL_PATH)/device.mk)
 
-# Device identifier
-PRODUCT_NAME := arrow_lavender
-PRODUCT_MANUFACTURER := Xiaomi
-PRODUCT_PLATFORM := SDM660
-PRODUCT_DEVICE := lavender
+# Common Device Propeties
 PRODUCT_BRAND := Xiaomi
-PRODUCT_MODEL := Redmi Note 7
-
+PRODUCT_DEVICE := lavender
+PRODUCT_MANUFACTURER := Xiaomi
+PRODUCT_NAME := flamingo_lavender
 TARGET_VENDOR_PRODUCT_NAME := lavender
+
+PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
+
+TARGET_BUILD_LAWNCHAIR := false
+TARGET_BUILD_MATLOG := false
+OFFICIAL_BUILD := true
+endif
